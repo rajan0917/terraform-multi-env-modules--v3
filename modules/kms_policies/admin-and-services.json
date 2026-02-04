@@ -1,0 +1,33 @@
+{
+  "Version": "2012-10-17",
+  "Id": "key-default-1",
+  "Statement": [
+    {
+      "Sid": "AllowRootAndAdminsFullAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:root"
+      },
+      "Action": "kms:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "AllowCloudWatchAndRDSToUseKey",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "rds.amazonaws.com",
+          "logs.us-east-1.amazonaws.com"
+        ]
+      },
+      "Action": [
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:GenerateDataKey",
+        "kms:ReEncrypt*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
